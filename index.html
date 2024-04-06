@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Neural Network in Purr-Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Building a Simple Neural Network in Purr-Data to Fit the Sine Curve</h1>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>I was curious to see if I could build a neural network in Purr-Data, so I build a pd patch which implements a simple feedforward neural network with two hidden layers, where you can set the input values and observe the output. It also includes some visualization components. However, it does not include any training functionality (which I plan to do in the future with backpropogation and optimization), for now, the weights and biases need to be pre-determined or set manually.</p>
+        </section>
+
+        <section>
+            <h2>Breakdown of the patch</h2>
+            <p>
+                <ol>
+                    <li><strong>Input Layer: </strong>The input to the neural network is represented by the floatatom objects with labels like "weight" and "bias" in the top part of the patch. These objects allow you to set the input values.</li>
+                    <li><strong>Hidden Layers: </strong>The patch contains two hidden layers, each composed of multiple "neuron" subpatches. Each "neuron" subpatch performs a weighted sum of its inputs (the input and the weight), adds a bias term, and then passes the result through a ReLU (Rectified Linear Unit) activation function.</li>
+                    <li><strong>Output Layer: </strong>The final outputs of the two hidden layers are summed together using the expr object to produce the overall output of the neural network, which is displayed in the floatatom object labeled "output".</li>
+                    <li><strong>Visualization: </strong>I've also used GEM for visualizing the outputs of the network.</li>
+                    <li><strong>Weight and Bias Initialization: </strong>The patch includes several messages (e.g., 6, 0, -1, 0.7) that initialize the weights and biases of the neurons in the hidden layers when the patch is loaded.</li>
+                    <li><strong>Training and Inference: </strong>While this patch is set up for inference (i.e., making predictions with a pre-trained model), it does not include any explicit mechanism for training the neural network. Training would typically involve adjusting the weights and biases based on input-output examples and a chosen optimization algorithm.</li>
+                    <li><strong>Function to fit: </strong>The sine curve, represented by the equation y = sin(2πx), which is a periodic function that oscillates between -1 and 1.</li>
+                </ol>
+            </p>
+        </section>
+
+        <section>
+            <h2>The Patch</h2>
+            <h4>Neuron Subpatch</h4>
+            <img src="Single_neuron.png" alt="A Single Neuron" style="width:360px;height:400px;">
+            <h4>The Complete Network</h4>
+            <img src="nnpdgif.gif" alt="The Complete Network" style="width:900px;height:600px;">
+            <h4>Visualizing using GEM</h4>
+            <img src="visualization - Made with Clipchamp.gif" alt="GEM visualization" style="width:900px;height:600px;">
+            <br>
+            <p>Download the patch source (with GEM visualization)<a download href="patch_source.txt">here</a></p>
+
+        </section>
+
+        <section>
+            <h2>The Future</h2>
+            <p>In summary, this patch implements a simple feedforward neural network with two hidden layers. However, the weights and biases need to set manually.</p>
+            <p>There's still a lot to explore. I'd love to expand the neural network to perform backpropocation and optimization once I figure out how to work with csv files in purr-data.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Amrut Kotrannavar</p>
+    </footer>
+</body>
+</html>
